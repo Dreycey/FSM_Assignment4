@@ -1,0 +1,3 @@
+stdio.h:157:12:fputc	16	static
+stdio.h:154:12:fgetc	16	static
+UART.c:38:6:Init_UART0	32	static

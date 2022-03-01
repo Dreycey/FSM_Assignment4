@@ -1,0 +1,2 @@
+FSM_StopLights.c:24:6:stoplight_activate	8	static
+FSM_StopLights.c:34:5:main	8	static

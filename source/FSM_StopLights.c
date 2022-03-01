@@ -20,16 +20,6 @@
 #include "stoplight_fsm.h"
 
 
-//
-//volatile uint32_t slider_val = 0;
-
-
-//
-///*
-// *  Global value for keeping information
-// *  from the touch sensor
-// */
-//volatile uint32_t slider_val = 0;
 
 void stoplight_activate(void) {
 	while (1) {
