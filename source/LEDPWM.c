@@ -10,7 +10,7 @@
 #define gpio_mask(x) (1UL << (x))
 
 // Defined in Header file
-void Init_Blue_LED_PWM(uint16_t period){
+void init_blue_leds_pwm(uint16_t period){
 	// Enable clock to port D and B
 	SIM->SCGC5 |= SIM_SCGC5_PORTD_MASK | SIM_SCGC5_PORTB_MASK;
 

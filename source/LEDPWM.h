@@ -26,6 +26,8 @@
  *     This structure is used to hold the int values for
  *     Red, Green and Blue
  *     Values - 1-255 expected; 256 is error
+ * ERROR CODES:
+ *     1. N/A
  */
 typedef struct {
 	uint8_t R, G, B;
@@ -39,7 +41,8 @@ typedef struct {
  *     based on the input RGB_ENTRY values.
  * INPUT:
  *     RGB_ENTRY struct [defined as struct with uint8_t R, G, B;]
- *
+ * ERROR CODES:
+ *     1. N/A
  * OUTPUT:
  *     void
  *     -- TPM2 and TPM0 of KL25z to change lights.
@@ -56,8 +59,10 @@ void turn_on_color(RGB_ENTRY color);
  * OUTPUT:
  *     void
  *     -- PWM LED system is ready
+ * ERROR CODES:
+ *     1. N/A
  */
-void Init_Blue_LED_PWM(uint16_t period);
+void init_blue_leds_pwm(uint16_t period);
 
 /*
  * Function:
@@ -72,6 +77,8 @@ void Init_Blue_LED_PWM(uint16_t period);
  * OUTPUT:
  *     RGB_ENTRY
  *     -- a color struct with new values
+ * ERROR CODES:
+ *     1. N/A
  */
 RGB_ENTRY get_transition_color(RGB_ENTRY color1, RGB_ENTRY color2, uint16_t percent);
 

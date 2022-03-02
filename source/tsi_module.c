@@ -11,7 +11,7 @@
 
 
 // Defined in header file.
-int Touch_Scan_LH(void)
+int scan_touch_sensor(void)
 {
 	unsigned int scan = 0;
 	TSI0->DATA = 	TSI_DATA_TSICH(9u);
@@ -24,7 +24,7 @@ int Touch_Scan_LH(void)
 }
 
 // Defined in header file.
-void Touch_Init()
+void init_tsi_touch_sensor()
 {
 	SIM->SCGC5 |= SIM_SCGC5_TSI_MASK; // enabling the clock
 	TSI0->GENCS = TSI_GENCS_MODE(0u) | //operating in non-noise mode

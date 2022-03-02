@@ -18,8 +18,10 @@
  *
  * Input:
  * 	   N/A - void
+ * ERROR CODES:
+ *     1. N/A
  */
-void Touch_Init();
+void init_tsi_touch_sensor();
 
 /*
  * Touch_Scan_LH
@@ -29,5 +31,7 @@ void Touch_Init();
  *
  * Input:
  * 	   The difference from the basal value.
+ * ERROR CODES:
+ *     1. N/A
  */
-int Touch_Scan_LH(void);
+int scan_touch_sensor(void);

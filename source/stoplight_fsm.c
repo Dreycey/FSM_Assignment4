@@ -93,7 +93,7 @@ volatile uint8_t g_cross_walk = 0;
 
 // defined in H file
 void read_touchsensor(void) {
-	if (Touch_Scan_LH() > TSI_BASELINE) {
+	if (scan_touch_sensor() > TSI_BASELINE) {
 		LOG("Button press detected \n\r");
 		LOG("Time since startup - %d \n\r", now());
 		g_cross_walk = 1;
