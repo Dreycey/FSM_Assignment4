@@ -4,7 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../source/FSM_StopLights.c \
+../source/FSM_StopLight.c \
 ../source/LEDPWM.c \
 ../source/UART.c \
 ../source/mtb.c \
@@ -14,7 +14,7 @@ C_SRCS += \
 ../source/tsi_module.c 
 
 OBJS += \
-./source/FSM_StopLights.o \
+./source/FSM_StopLight.o \
 ./source/LEDPWM.o \
 ./source/UART.o \
 ./source/mtb.o \
@@ -24,7 +24,7 @@ OBJS += \
 ./source/tsi_module.o 
 
 C_DEPS += \
-./source/FSM_StopLights.d \
+./source/FSM_StopLight.d \
 ./source/LEDPWM.d \
 ./source/UART.d \
 ./source/mtb.d \
@@ -38,7 +38,7 @@ C_DEPS += \
 source/%.o: ../source/%.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU C Compiler'
-	arm-none-eabi-gcc -DCPU_MKL25Z128VLK4 -DCPU_MKL25Z128VLK4_cm0plus -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE=1 -DCR_INTEGER_PRINTF -DPRINTF_FLOAT_ENABLE=0 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -D__REDLIB__ -I"/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/board" -I"/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/source" -I"/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights" -I"/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/drivers" -I"/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/CMSIS" -I"/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/utilities" -I"/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -fmerge-constants -fmacro-prefix-map="../$(@D)/"=. -mcpu=cortex-m0plus -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	arm-none-eabi-gcc -D__REDLIB__ -DCPU_MKL25Z128VLK4 -DCPU_MKL25Z128VLK4_cm0plus -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -DPRINTF_FLOAT_ENABLE=0 -DSDK_DEBUGCONSOLE_UART -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I"/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLight/board" -I"/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLight/source" -I"/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLight" -I"/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLight/drivers" -I"/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLight/CMSIS" -I"/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLight/utilities" -I"/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLight/startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -fmerge-constants -fmacro-prefix-map="../$(@D)/"=. -mcpu=cortex-m0plus -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

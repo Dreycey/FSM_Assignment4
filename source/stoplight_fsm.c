@@ -94,8 +94,8 @@ volatile uint8_t g_cross_walk = 0;
 // defined in H file
 void read_touchsensor(void) {
 	if (Touch_Scan_LH() > TSI_BASELINE) {
-		LOG("Button press detected \n");
-		LOG("Time since startup - %d \n", now());
+		LOG("Button press detected \n\r");
+		LOG("Time since startup - %d \n\r", now());
 		g_cross_walk = 1;
 	} else {
 		g_cross_walk = 0;
@@ -131,8 +131,8 @@ RGB_ENTRY operate_stoplights(void)
 		};
 		turn_on_color(current_color);
 		if (get_timer() >= state_table[next_state].delay_time) {
-			LOG("TRANSITIONING FROM %d STATE \n", state_table[next_state].current_state);
-			LOG("TRANSITIONING INTO %d STATE \n", state_table[next_state].next_state);
+			LOG("TRANSITIONING FROM %d STATE \n\r", state_table[next_state].current_state);
+			LOG("TRANSITIONING INTO %d STATE \n\r", state_table[next_state].next_state);
 			LOG("Time since startup - %d \n", now());
 			prev_state = next_state;
 			next_state = state_table[next_state].next_state;

@@ -15,6 +15,9 @@ source/FSM_StopLights.o source/FSM_StopLights.d: \
  /Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/drivers/fsl_common.h \
  /Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/drivers/fsl_gpio.h \
  /Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/CMSIS/MKL25Z4.h \
+ /Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/board/peripherals.h \
+ /Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/board/pin_mux.h \
+ /Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/board/clock_config.h \
  /Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/utilities/fsl_debug_console.h \
  ../source/UART.h \
  /Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/CMSIS/MKL25Z4.H \
@@ -50,6 +53,12 @@ source/FSM_StopLights.o source/FSM_StopLights.d: \
 /Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/drivers/fsl_gpio.h:
 
 /Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/CMSIS/MKL25Z4.h:
+
+/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/board/peripherals.h:
+
+/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/board/pin_mux.h:
+
+/Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/board/clock_config.h:
 
 /Users/dreyceyalbin/Documents/MCUXpressoIDE_11.2.1/workspace/FSM_StopLights/utilities/fsl_debug_console.h:
 

@@ -28,25 +28,25 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: FSM_StopLights.axf
+all: FSM_StopLight.axf
 
 # Tool invocations
-FSM_StopLights.axf: $(OBJS) $(USER_OBJS)
+FSM_StopLight.axf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU Linker'
-	arm-none-eabi-gcc -nostdlib -Xlinker -Map="FSM_StopLights.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m0plus -mthumb -T FSM_StopLights_Debug.ld -o "FSM_StopLights.axf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-gcc -nostdlib -Xlinker -Map="FSM_StopLight.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m0plus -mthumb -T FSM_StopLight_Debug.ld -o "FSM_StopLight.axf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build
 
 # Other Targets
 clean:
-	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) FSM_StopLights.axf
+	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) FSM_StopLight.axf
 	-@echo ' '
 
 post-build:
 	-@echo 'Performing post-build steps'
-	-arm-none-eabi-size "FSM_StopLights.axf"; # arm-none-eabi-objcopy -v -O binary "FSM_StopLights.axf" "FSM_StopLights.bin" ; # checksum -p MKL25Z128xxx4 -d "FSM_StopLights.bin";
+	-arm-none-eabi-size "FSM_StopLight.axf"; # arm-none-eabi-objcopy -v -O binary "FSM_StopLight.axf" "FSM_StopLight.bin" ; # checksum -p MKL25Z128xxx4 -d "FSM_StopLight.bin";
 	-@echo ' '
 
 .PHONY: all clean dependents post-build
