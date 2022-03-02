@@ -42,17 +42,32 @@ struct States {
 	int delay_time;
 };
 
+
+#ifdef DEBUG
 struct States state_table[] =
 {
 	  {GO_WAIT, t_GO2WARNING, 0, {0x22, 0x96, 0x22}, 5*16},
 	  {t_GO2WARNING, WARNING_WAIT, 1, {0xFF, 0xB2, 0x00}, 16},
-	  {WARNING_WAIT, t_WARNING2STOP, 0, {0xFF, 0xB2, 0x00}, 5*16},
+	  {WARNING_WAIT, t_WARNING2STOP, 0, {0xFF, 0xB2, 0x00}, 3*16},
 	  {t_WARNING2STOP, STOP_WAIT, 1, {0x61, 0x1E, 0x3C}, 16},
 	  {STOP_WAIT, t_STOP2GO, 0, {0x61, 0x1E, 0x3C}, 5*16},
 	  {t_STOP2GO, GO_WAIT, 1, {0x22, 0x96, 0x22}, 16},
 	  {t_CROSS2GO, GO_WAIT, 1, {0x22, 0x96, 0x22}, 16},
 	  {CROSS_WAIT, t_CROSS2GO, 0, {0x00, 0x10, 0x30}, 16}
 };
+#else
+struct States state_table[] =
+{
+	  {GO_WAIT, t_GO2WARNING, 0, {0x22, 0x96, 0x22}, 20*16},
+	  {t_GO2WARNING, WARNING_WAIT, 1, {0xFF, 0xB2, 0x00}, 16},
+	  {WARNING_WAIT, t_WARNING2STOP, 0, {0xFF, 0xB2, 0x00}, 5*16},
+	  {t_WARNING2STOP, STOP_WAIT, 1, {0x61, 0x1E, 0x3C}, 16},
+	  {STOP_WAIT, t_STOP2GO, 0, {0x61, 0x1E, 0x3C}, 20*16},
+	  {t_STOP2GO, GO_WAIT, 1, {0x22, 0x96, 0x22}, 16},
+	  {t_CROSS2GO, GO_WAIT, 1, {0x22, 0x96, 0x22}, 16},
+	  {CROSS_WAIT, t_CROSS2GO, 0, {0x00, 0x10, 0x30}, 16}
+};
+#endif
 
 
 
