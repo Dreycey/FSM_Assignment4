@@ -20,7 +20,20 @@
 #include "stoplight_fsm.h"
 
 
-
+/*
+ * Function:
+ *     stoplight_activate(void)
+ * Description:
+ *     This function is responsible for the embedded while loop that
+ *     controls the finite state machine for the traffic lights.
+ * INPUT:
+ *     1.N/A - void
+ * OUTPUT:
+ *     1. N/A - void
+ * NOTES:
+ *     - each pass it runs through the FSM and reads the touch sensor.
+ *       This allows for flexible design as other sensors may be read.
+ */
 void stoplight_activate(void) {
 	while (1) {
 		operate_stoplights();

@@ -3,6 +3,12 @@
  *
  *  Created on: Feb 27, 2022
  *      Author: dreyceyalbin
+ *
+ *  Description:
+ *      This file contains the implementation-specific information
+ *      for the design of the Buffahiti Traffic Light (PES Assignment 4).
+ *      Specifically, the methods and structures defined are used for
+ *      creating a modular finite-state-machine.
  */
 #include <stdint.h>
 #include "tsi_module.h"
@@ -10,10 +16,7 @@
 #include "MKL25Z4.h"
 #include "log.h"
 #include "timer.h"
-
-
 #define TSI_BASELINE (500)
-
 
 
 /*
@@ -72,11 +75,11 @@ struct States state_table[] =
 
 
 /*
- * Methods called by active stoplight
+ * global to inidicate CROSSWALK/button press
  */
 volatile uint8_t g_cross_walk = 0;
 
-// read touch sensor by polling
+// defined in H file
 void read_touchsensor(void) {
 	LOG("in read sensor \n");
 	if (Touch_Scan_LH() > TSI_BASELINE) {
@@ -86,7 +89,7 @@ void read_touchsensor(void) {
 	}
 }
 
-// runs STOPLIGHTS FSM
+// defined in H file - this is the finite state machine
 RGB_ENTRY operate_stoplights(void)
 {
 	// defines
@@ -147,6 +150,3 @@ RGB_ENTRY operate_stoplights(void)
 	}
 	return current_color;
 }
-
-
-
