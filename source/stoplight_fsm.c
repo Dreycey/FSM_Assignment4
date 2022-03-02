@@ -20,7 +20,10 @@
 
 
 /*
- * Data structures
+ * stoplight_state
+ *
+ * Each state is defined by a particular number
+ * in the following Enum.
  */
 typedef enum stoplight_state {
 	GO_WAIT = 0,
@@ -30,11 +33,14 @@ typedef enum stoplight_state {
 	STOP_WAIT = 4,
 	t_STOP2GO = 5,
 	t_CROSS2GO = 6,
-	CROSS_WAIT
+	CROSS_WAIT = 7
 } stoplight_state;
 
 /*
- * Make a table of States, as defined above
+ * States
+ *
+ * States can be used as data structures, with
+ * the following information per state.
  */
 
 struct States {
@@ -45,6 +51,13 @@ struct States {
 	int delay_time;
 };
 
+/*
+ * state_table
+ *
+ * For this particular FSM, we define the following
+ * table for each state, containing information on
+ * delay times, next state, and the state's color.
+ */
 
 #ifdef DEBUG
 struct States state_table[] =
@@ -73,7 +86,6 @@ struct States state_table[] =
 #endif
 
 
-
 /*
  * global to inidicate CROSSWALK/button press
  */
@@ -81,8 +93,9 @@ volatile uint8_t g_cross_walk = 0;
 
 // defined in H file
 void read_touchsensor(void) {
-	LOG("in read sensor \n");
 	if (Touch_Scan_LH() > TSI_BASELINE) {
+		LOG("Button press detected \n");
+		LOG("Time since startup - %d \n", now());
 		g_cross_walk = 1;
 	} else {
 		g_cross_walk = 0;
@@ -97,13 +110,13 @@ RGB_ENTRY operate_stoplights(void)
 	static stoplight_state prev_state;
 	static uint8_t new_state = 1;
 	static RGB_ENTRY current_color;
-
+	// parameters
+	int number_of_seconds = 10; // loop CROSSWALK FOR 10 seconds
 	/*
 	 * Statements
 	 */
 	if (g_cross_walk == 0) { 	// only run task when NOT in flash mode
 		if (new_state) {
-			LOG("TRANSITIONING INTO %d STATE \n", state_table[next_state].current_state);
 			reset_timer();
 			new_state = 0;
 		}
@@ -118,6 +131,9 @@ RGB_ENTRY operate_stoplights(void)
 		};
 		turn_on_color(current_color);
 		if (get_timer() >= state_table[next_state].delay_time) {
+			LOG("TRANSITIONING FROM %d STATE \n", state_table[next_state].current_state);
+			LOG("TRANSITIONING INTO %d STATE \n", state_table[next_state].next_state);
+			LOG("Time since startup - %d \n", now());
 			prev_state = next_state;
 			next_state = state_table[next_state].next_state;
 		    new_state = 1;
@@ -128,8 +144,11 @@ RGB_ENTRY operate_stoplights(void)
 	 * If crosswalk
 	 */
 	if (g_cross_walk == 1) {
-		// blink 250 ms OFF
+		// Define colors
 		RGB_ENTRY off_color = {0, 0, 0};
+		RGB_ENTRY on_color = {0x00, 0x10, 0x30};
+
+		// transition to off.
         for (float i; i < 16; i++) {
 			uint16_t percent = (i / 16) * 100;
 			turn_on_color(get_transition_color(current_color, off_color, percent));
@@ -138,8 +157,15 @@ RGB_ENTRY operate_stoplights(void)
 		turn_on_color(off_color);
 		fractional_delay(4); // 1/4th of a second; 250 msec
 
+		// loop N-1 times
+		for (int j=1; j < number_of_seconds; j++) {
+			turn_on_color(on_color);
+			fractional_delay(3*4); // 3/4ths of a second; 750 msec
+			turn_on_color(off_color);
+			fractional_delay(4); // 1/4ths of a second; 250 msec
+		}
+
 		// blink 750 ms ON
-		RGB_ENTRY on_color = {0x00, 0x10, 0x30};
 		turn_on_color(on_color);
 		fractional_delay(3*4); // 3/4ths of a second; 750 msec
 

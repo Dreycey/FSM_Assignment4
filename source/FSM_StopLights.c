@@ -11,6 +11,9 @@
 #include <stdio.h>
 #include "board.h"
 #include "MKL25Z4.h"
+#include "peripherals.h"
+#include "pin_mux.h"
+#include "clock_config.h"
 #include "fsl_debug_console.h"
 #include "UART.h"
 #include "tsi_module.h"
@@ -18,7 +21,6 @@
 #include "LEDPWM.h"
 #include "timer.h"
 #include "stoplight_fsm.h"
-
 
 /*
  * Function:
@@ -35,6 +37,7 @@
  *       This allows for flexible design as other sensors may be read.
  */
 void stoplight_activate(void) {
+	LOG("The main loop is starting \n");
 	while (1) {
 		operate_stoplights();
 		read_touchsensor();
@@ -45,8 +48,14 @@ void stoplight_activate(void) {
  * MAIN
  */
 int main(void) {
-    /* Init board hardware. */
+	BOARD_InitBootPins();
 	BOARD_InitBootClocks();
+	BOARD_InitBootPeripherals();
+	#ifndef BOARD_INIT_DEBUG_CONSOLE_PERIPHERAL
+	    /* Init FSL debug console. */
+	    BOARD_InitDebugConsole();
+	#endif
+    /* Init board hardware. */
 
     // Initialize UART, TSI, PWM
 	Touch_Init();
