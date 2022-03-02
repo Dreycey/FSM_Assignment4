@@ -6,7 +6,6 @@
 C_SRCS += \
 ../source/FSM_StopLight.c \
 ../source/LEDPWM.c \
-../source/UART.c \
 ../source/mtb.c \
 ../source/semihost_hardfault.c \
 ../source/stoplight_fsm.c \
@@ -16,7 +15,6 @@ C_SRCS += \
 OBJS += \
 ./source/FSM_StopLight.o \
 ./source/LEDPWM.o \
-./source/UART.o \
 ./source/mtb.o \
 ./source/semihost_hardfault.o \
 ./source/stoplight_fsm.o \
@@ -26,7 +24,6 @@ OBJS += \
 C_DEPS += \
 ./source/FSM_StopLight.d \
 ./source/LEDPWM.d \
-./source/UART.d \
 ./source/mtb.d \
 ./source/semihost_hardfault.d \
 ./source/stoplight_fsm.d \
